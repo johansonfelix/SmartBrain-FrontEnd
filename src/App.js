@@ -101,7 +101,7 @@ class App extends Component {
   };
 
   displayGender = (detection) => {
-    console.log(detection);
+   
     const clarifaiGenderData = detection.outputs[0].data.concepts[0].name;
     let gender = "Unknown";
     switch (clarifaiGenderData.toUpperCase()) {
@@ -158,7 +158,7 @@ class App extends Component {
   onSubmit = () => {
     this.setState({ imageURL: this.state.input });
 
-    fetch("http://localhost:3001/imagedetection", {
+    fetch("https://glacial-stream-59643.herokuapp.com/imagedetection", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -168,7 +168,7 @@ class App extends Component {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          fetch("http://localhost:3001/image/", {
+          fetch("https://glacial-stream-59643.herokuapp.com/image", {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -185,7 +185,7 @@ class App extends Component {
       })
       .catch((err) => this.handleError(err));
 
-    fetch("http://localhost:3001/gender", {
+    fetch("https://glacial-stream-59643.herokuapp.com/gender", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -196,7 +196,7 @@ class App extends Component {
       .then((gender) => this.displayGender(gender))
       .catch((err) => console.log(err));
 
-    fetch("http://localhost:3001/age", {
+    fetch("https://glacial-stream-59643.herokuapp.com/age", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -207,7 +207,7 @@ class App extends Component {
       .then((age) => this.displayAge(age))
       .catch((err) => console.log(err));
 
-    fetch("http://localhost:3001/ethnicity", {
+    fetch("https://glacial-stream-59643.herokuapp.com/ethnicity", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
