@@ -157,7 +157,11 @@ class App extends Component {
 
   onSubmit = () => {
     this.setState({ imageURL: this.state.input });
-    console.log('input', this.state.input);
+
+    if(!this.state.input){
+        console.log('No input given');
+        return
+    }
     fetch("https://glacial-stream-59643.herokuapp.com/imagedetection", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -183,7 +187,7 @@ class App extends Component {
         }
         this.displayFaceBoxes(this.calculateFaceLocation(response));
       })
-      .catch((err) => this.handleError(err));
+      .catch((err) => console.log("Error...something went wrong", err));
 
     fetch("https://glacial-stream-59643.herokuapp.com/gender", {
       method: "POST",
