@@ -157,7 +157,7 @@ class App extends Component {
 
   onSubmit = () => {
     this.setState({ imageURL: this.state.input });
-
+    console.log('input', this.state.input);
     fetch("https://glacial-stream-59643.herokuapp.com/imagedetection", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
