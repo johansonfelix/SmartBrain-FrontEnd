@@ -101,54 +101,59 @@ class App extends Component {
   };
 
   displayGender = (detection) => {
-   
-    const clarifaiGenderData = detection.outputs[0].data.concepts[0].name;
-    let gender = "Unknown";
-    switch (clarifaiGenderData.toUpperCase()) {
-      case "FEMININE":
-        gender = "Female";
-        break;
-      case "MASCULINE":
-        gender = "Male";
-        break;
-      default:
-        gender = "Unknown";
-    }
+    if (detection.name !== "Error") {
+      const clarifaiGenderData = detection.outputs[0].data.concepts[0].name;
+      let gender = "Unknown";
+      switch (clarifaiGenderData.toUpperCase()) {
+        case "FEMININE":
+          gender = "Female";
+          break;
+        case "MASCULINE":
+          gender = "Male";
+          break;
+        default:
+          gender = "Unknown";
+      }
 
-    this.setState((prevState) => ({
-      boxes: {
-        ...prevState.boxes,
-        gender: gender,
-      },
-    }));
+      this.setState((prevState) => ({
+        boxes: {
+          ...prevState.boxes,
+          gender: gender,
+        },
+      }));
+    }
   };
 
   displayAge = (detection) => {
-    const clarifaiAgeData = detection.outputs[0].data.concepts[0].name;
+    if (detection.name !== "Error") {
+      const clarifaiAgeData = detection.outputs[0].data.concepts[0].name;
 
-    let age = "Unknown";
-    if (clarifaiAgeData) age = clarifaiAgeData;
+      let age = "Unknown";
+      if (clarifaiAgeData) age = clarifaiAgeData;
 
-    this.setState((prevState) => ({
-      boxes: {
-        ...prevState.boxes,
-        age: age,
-      },
-    }));
+      this.setState((prevState) => ({
+        boxes: {
+          ...prevState.boxes,
+          age: age,
+        },
+      }));
+    }
   };
 
   displayEthnicity = (detection) => {
-    const clarifaiEthnicityData = detection.outputs[0].data.concepts[0].name;
+    if (detection.name !== "Error") {
+      const clarifaiEthnicityData = detection.outputs[0].data.concepts[0].name;
 
-    let ethnicity = "Unknown";
-    if (clarifaiEthnicityData) ethnicity = clarifaiEthnicityData;
+      let ethnicity = "Unknown";
+      if (clarifaiEthnicityData) ethnicity = clarifaiEthnicityData;
 
-    this.setState((prevState) => ({
-      boxes: {
-        ...prevState.boxes,
-        ethnicity: ethnicity,
-      },
-    }));
+      this.setState((prevState) => ({
+        boxes: {
+          ...prevState.boxes,
+          ethnicity: ethnicity,
+        },
+      }));
+    }
   };
 
   onInputChange = (event) => {
@@ -158,10 +163,11 @@ class App extends Component {
   onSubmit = () => {
     this.setState({ imageURL: this.state.input });
 
-    if(!this.state.input){
-        console.log('No input given');
-        return
+    if (!this.state.input) {
+      console.log("No input given");
+      return;
     }
+
     fetch("https://glacial-stream-59643.herokuapp.com/imagedetection", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -172,6 +178,10 @@ class App extends Component {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
+          if (response.name === "Error") {
+            return;
+          }
+
           fetch("https://glacial-stream-59643.herokuapp.com/image", {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
