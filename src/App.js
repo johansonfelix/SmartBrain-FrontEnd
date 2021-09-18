@@ -161,6 +161,13 @@ class App extends Component {
   };
 
   onSubmit = () => {
+    this.setState({isGroup: true});
+    this.setState((prevState) => ({
+      boxes: {
+        ...prevState.boxes,
+        locations: [],
+      },
+    }));
     this.setState({ imageURL: this.state.input });
 
     if (!this.state.input) {
