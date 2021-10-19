@@ -63,7 +63,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://covidtrackapplication.herokuapp.com/)
+
 Full Stack Final project for Udemy course. Users can login, paste a picture with a face or faces and the app will detect the faces in the picture along with a prediction of the age, gender and ethnicity of the face. Face detection done through [Clarifai API]((https://www.clarifai.com/).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
