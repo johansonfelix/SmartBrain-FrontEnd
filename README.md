@@ -19,7 +19,7 @@
   <p align="center">
    Final Project for Udemy Course. User can login, paste a picture with a face or faces and the app will detect the faces in the picture along with a prediction of the age, gender and ethnicity of the face.
     <br />
-    <a href="https://github.com/johansonfelix/coronavirus-tracker/blob/main/README.md"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/johansonfelix/smartbrain-frontend/blob/main/README.md"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://smartrecognition-app.herokuapp.com/">View Demo</a>
@@ -93,15 +93,6 @@ Full Stack Final project for Udemy course. Users can login, paste a picture with
 4. You must add your own API key in the src/App.js file to connect to Clarifai.
 You can grab Clarifai API key [here](https://www.clarifai.com/)
 5. Open browser to localhost:3000
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
